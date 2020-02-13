@@ -4,7 +4,7 @@ const app = new Koa()
 const router = new Router()
 
 
-router.get('/test',(ctx,next)=>{
+router.get('/api/test',(ctx,next)=>{
     ctx.body = {
         key: 'test'
     }
