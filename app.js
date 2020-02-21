@@ -11,14 +11,19 @@ router.get('/node/api/article',(ctx,next)=>{
         "data": {
             "articleList": [
                 {
-                    "title":"关于网站，关于博客",
-                    "img": "https://yangicheng.cn/static/image/blog-summary/javascript.png",
-                    "summary": ["心路历程","闲谈"]
+                    "id":0,
+                    "articleTitle":"关于网站，关于博客",
+                    "articleImg": "https://yangicheng.cn/static/image/blog-summary/javascript.png",
+                    "articleLabel": ["心路历程","闲谈"],
+                    "articleDate": '2020-2-21'
                 },
                 {
-                    "title":"浅谈https",
-                    "img": "https://yangicheng.cn/static/image/blog-summary/javascript.png",
-                    "summary": ["理论","面试"]
+                    "id":1,
+                    "articleTitle":"浅谈https",
+                    "articleImg": "https://yangicheng.cn/static/image/blog-summary/javascript.png",
+                    "articleLabel": ["理论","面试"],
+                    "articleDate": '2020-2-21'
+
                 }
             ]
         }
