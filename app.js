@@ -4,7 +4,7 @@ const app = new Koa()
 const router = new Router()
 
 
-router.get('/node/api/test',(ctx,next)=>{
+router.get('/node/api/article',(ctx,next)=>{
     ctx.body = {
         "code": "200",
         "msg" : "success",
