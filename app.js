@@ -44,10 +44,7 @@ let content1 = `<h1>什么是https</h1><p>https是HTTP+SSL/TLS，也就是在原
 <h1>身份信息如何验证</h1>
 <p>通过可信任机构颁发的数字证书，数字证书包含了相关信息可以进行身份的验证</p>
 `
-function myTrim(str){
-    return str.replace(/\s+/g,"")
 
-}
 
 router.get('/node/api/article/detail',(ctx,next)=>{
     switch (ctx.query.id) {
@@ -55,7 +52,7 @@ router.get('/node/api/article/detail',(ctx,next)=>{
             ctx.body= {
                 "code": 200,
                 "msg": 'success',
-                "content": myTrim(content1)
+                "content": content1
             }  
             break;
     
