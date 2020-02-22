@@ -45,7 +45,7 @@ let content1 = `<h1>什么是https</h1><p>https是HTTP+SSL/TLS，也就是在原
 <p>通过可信任机构颁发的数字证书，数字证书包含了相关信息可以进行身份的验证</p>
 `
 function myTrim(str){
-    return str
+    return str.replace(/\s+/g,"")
 
 }
 
