@@ -54,13 +54,41 @@ router.get('/node/api/v1/summary', (ctx, next) => {
                     id: 0,
                     type: 0,
                     name: "hooks",
-                    summary: "hooks知识点"
+                    summary: "hooks知识点",
+                    date: "2020-2-24",
                 },
                 {
-                    id: 0,
+                    id: 1,
                     type: 1,
                     name: "node是什么",
-                    summary: "node的基本概念"
+                    summary: "node的基本概念",
+                    date: "2020-2-24"
+                }
+            ]
+        }
+    }
+})
+
+
+router.get('/node/api/v1/summary/nice', (ctx, next) => {
+    ctx.body = {
+        "code": "200",
+        "msg": "success",
+        "data": {
+            niceSummaryItem: [
+                {
+                    id: 0,
+                    type: 0,
+                    name: "hooks",
+                    summary: "hooks知识点",
+                    date: "2020-2-24"
+                },
+                {
+                    id: 1,
+                    type: 1,
+                    name: "node是什么",
+                    summary: "node的基本概念",
+                    date: "2020-2-24"
                 }
             ]
         }
