@@ -60,8 +60,8 @@ router.get('/node/api/v1/summary', (ctx, next) => {
                 {
                     id: 1,
                     type: 1,
-                    name: "node是什么",
-                    summary: "node的基本概念",
+                    name: "路由",
+                    summary: "路由分类和前端路由",
                     date: "2020-2-24"
                 }
             ]
