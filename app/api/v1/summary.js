@@ -35,7 +35,7 @@ router.get('/node/api/v1/summary', (ctx, next) => {
                 {
                     id: 3,
                     name: "Js",
-                    number: 0,
+                    number: 1,
                     headerImg: "https://yangicheng.cn/static/image/blog-summary/javascript.png",
                     headerName: "javascript",
                     headerSummary: "JavaScript (JS) is a lightweight interpreted programming language with first-class functions",
@@ -63,6 +63,13 @@ router.get('/node/api/v1/summary', (ctx, next) => {
                     name: "路由",
                     summary: "路由分类和前端路由",
                     date: "2020-2-24"
+                },
+                {
+                    id: 2,
+                    type: 3,
+                    name: "JS基础",
+                    summary: "初级JS基础概述",
+                    date: "2020-2-27"
                 }
             ]
         }
@@ -89,6 +96,13 @@ router.get('/node/api/v1/summary/nice', (ctx, next) => {
                     name: "路由",
                     summary: "路由分类和前端路由",
                     date: "2020-2-24"
+                },
+                {
+                    id: 2,
+                    type: 3,
+                    name: "JS基础",
+                    summary: "初级JS基础概述",
+                    date: "2020-2-27"
                 }
             ]
         }
@@ -97,19 +111,31 @@ router.get('/node/api/v1/summary/nice', (ctx, next) => {
 
 
 
-let content2 = `<h1>什么是https</h1><p>https是HTTP+SSL/TLS，也就是在原有的http协议的基础上加上了为了保证传输安全性的协议，所以https并不是一个新的协议</p><h1>为什么要使用https</h1><p>在以前的http协议中，大致存在着三个问题：1、数据明文传输 2、报文完整性无法验证 3、无法验证通信双方的身份</p><h1>对称加密算法</h1><p>对称加密算法是客户端和服务端共用一个密钥</p><p>优点：加密解密效率高、缺点：密钥无法实现安全传输、密钥数目难以管理、无法提供信息完整性校验</p>
-<h1>非对称加密算法</h1>
-<p>加密具有双向性,密钥分为公钥(公开)和私钥(自己保有)。公钥加密、私钥解密用于加密通信。私钥加密、公钥解密用于数字签名</p>
-<p>优点：服务器仅维持一个私钥即可，缺点：加密解密会耗费一定时间</p>
-<h1>数据明文传输解决方法</h1>
-<p>混合使用对称加密算法和非对称加密算法</p>
-<p>连接建立阶段使用非对称加密算法(沟通对称加密算法使用的密钥)，内容传输阶段使用对称加密算法</p>
-<img src="https://www.yangicheng.cn/static/image/article-detail/https.png" alt=""/>
-<h1>报文完整性如何验证</h1>
-<p>客户端或服务端向对方发送消息的时候，不仅会发送原消息，而且会将原消息通过hash算法生成信息摘要，并使用私钥进行加密生成数字签名。对方获得消息后，将消息通过hash算法获得信息摘要，并通过公钥解密私钥加密后的数字签名，得到信息摘要，通过对比两个信息摘要可以验证信息的完整性</p>
-<img src="https://www.yangicheng.cn/static/image/article-detail/digital-signature.jpg" alt=""/>
-<h1>身份信息如何验证</h1>
-<p>通过可信任机构颁发的数字证书，数字证书包含了相关信息可以进行身份的验证</p>
+let content2 = `
+<h1>JS变量类型和计算</h1>
+<p>值类型&引用类型 值类型的变量的值在栈中存储互不影响，栈从上往下排列。引用类型的变量的值在堆中存储，变量中存储的是指向内存中的地址，可以通过这个地址拿到内存中存储的引用类型的变量的值。堆是从下往上排列。引用类型放在堆中的原因是引用类型可能会很大，存储堆中的地址比复制一个引用类型的值对内存更友好，消耗更小</p>
+<p>常见值类型 undefined string number boolean symbol 常见引用类型：object array 特殊引用类型：null指向空地址 function(也可作为第三个函数类型) </p>
+<p>typeof运算符：能够识别所有的值类型，识别函数，判断是否是引用类型(不可分辨object和array)，深拷贝(递归)</p>
+<p>变量计算中存在着类型转换</p>
+<h1>原型和原型链</h1>
+<p>ts中对面向对象支持较好，但是本质还是原型和原型链继承 instanceof类型判断可以区分array和object 显式原型prototype(构造函数) 隐式原型__proto__(实例) 使用方法和属性时如果实例没有则会原型链向上查找</p>
+<h1>作用域和闭包</h1>
+<p>作用域就是变量的合法使用范围 全局作用域、函数作用域、块级作用域{}ES6 let和const 变量会向上查找。 闭包:作用域应用的特殊情况。1、函数作为参数被传递。2、函数作为返回值 闭包中的变量查找是在函数定义的地方查找，不是子在函数运行的地方向上查找</p>
+<p>this是在函数执行的时候确定的，this作为参数传递会发生隐式丢失(react中) bind(返回一个新的函数) apply call。箭头函数的this是继承而来，构造函数中的this指向实例</p>
+<h1>异步和单线程</h1>
+<p>JS是单线程语言，JS和DOM渲染共用一个线程所以JS可以修改DOM结构 同步和异步最大区别是会不会阻塞代码执行 promise 异步终极解决方案 async，await </p>
+<h1>JS</h1>
+<p>JS的核心基础是ECMA 262标准规定的语法。JS Web API是W3C标准，用于网页操作API 前者和后者结合就是javascript能够在浏览器上跑的语言</p>
+<h1>DOM</h1>
+<p>浏览器解析html后生成的树结构的文档对象模型DOM 获取DOM等基本操作 attribute和property.property是DOM中的属性，是JavaScript里的对象；attribute是HTML标签上的特性，它的值只能够是字符串；</p>
+<p>DOM性能，DOM操作特别"昂贵" 1、对DOM查询做缓存 2、将频繁操作改为一次性操作(创建文档片段 document.createDocumentFragment)</p>
+<h1>BOM</h1>
+<p>BOM api  navigator(浏览器信息) screen(屏幕信息) location(路由信息) history(前进后退)</p>
+<h1>事件</h1>
+<p>事件绑定 事件冒泡 事件捕获 组织默认行为(preventDefault()) 事件冒泡会向外触发事件 事件捕获从外到里触发事件 stopPropagation()组织事件冒泡。 </p>
+<p>事件代理: 自动绑定事件 原理就是事件冒泡，在父级容器中监听事件 再通过event.target拿到具体的绑定内容</p>
+<h1>ajax</h1>
+
 `
 let content1 = `
 <h1>web中的路由</h1>
@@ -132,14 +158,7 @@ let content1 = `
 `
 
 let content0 = `
-<h1>自我描述</h1>
-<p>某邮电学校学生，不是科班，自动化学院的学生，在以前也没有想过会写代码，甚至在大一的时候C语言也没怎么好好学，刷题的时候只会找找bug来做题。最开始写代码是有门课是单片机，用c语言写一些跑马灯和篮球计分器啥的代码。说实话当时写只能是硬写，一点也不会，照着敲好多遍。一个功能没实现晚上就一直在那想。特别容易钻牛角尖。
-大一疯狂玩。吉他、滑板、吃鸡、王者，社团，部门。确实荒废了一年，不过现在想想如果当时不耍现在也静不下心来。也没啥后悔的。大二确实课太多了。慢慢接触了C。因为辅导员有要求所以不得不去把计算机二级给考了。大二下的时候确实觉得不该浑浑噩噩了。好朋友给了我一门机器学习的课。认认真真学了之后，发现确实太难了。之后跟着他开始学习微信小程序。</p>
-<p>微信小程序是学的慕课网7yue的课，不得不说他的课是真的好，培养思维，提纲挈领。渐渐的开始入门。之后就慢慢学习前端的许多的知识。从一开始的微信小程序调试都不怎么会。到现在进步了许多。DOM-BOM-JS-CSS-HTML慢慢的开始学习 es6-react-node 渐入佳境的样子，
-如果从去年暑假，也就是7月份的样子开始算的话，到现在应该有半年了吧。其实半年学习的东西还是挺多的。希望学弟学妹们不要学我浑浑噩噩。但是不要觉得半年就能做什么什么，其实我现在也就是个小菜鸡。很多计算机方面基础还没有打牢。还有很多很多的不足。而且在这半年里面确实是每天都花了很多的时间在学习写代码上还有自学一些计算机的课程。特别辛苦，但也感谢自己以前的努力。之后也要坚持一下</p>
-<p>为了恰饭，也为了自己能做点事情</p>
-<h1>建议</h1>
-<p>知识付费的时代，不要舍不得钱买课。一分钱一分货，网上的免费课程很多确实有用，但是没用的东西太多了。花钱买的课。至少是制作者用了特别多的精力，还有团队的支撑，答疑的渠道。学习不应该是拿来开玩笑的，学习我觉得应该自豪一点。</p>
+<h1>正在学习中...</h1>
 `
 
 // 笔记详情
@@ -151,7 +170,7 @@ router.get('/node/api/v1/summary/detail', (ctx, next) => {
                 "msg": 'success',
                 "data": {
                     "content": content2,
-                    "title": "浅谈https"
+                    "title": "JS基础"
                 }
 
             }
@@ -174,7 +193,7 @@ router.get('/node/api/v1/summary/detail', (ctx, next) => {
                 "msg": 'success',
                 "data": {
                     "content": content0,
-                    "title": "简单总结"
+                    "title": "hooks"
                 }
             }
             break;
