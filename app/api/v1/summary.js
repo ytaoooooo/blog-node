@@ -42,7 +42,7 @@ router.get('/node/api/v1/summary', (ctx, next) => {
                 },
                 {
                     id: 4,
-                    name: "Css",
+                    name: "Css/other",
                     number: 0,
                     headerImg: "https://yangicheng.cn/static/image/blog-summary/css.png",
                     headerName: "Css",
@@ -70,6 +70,13 @@ router.get('/node/api/v1/summary', (ctx, next) => {
                     name: "JS基础",
                     summary: "初级JS基础概述",
                     date: "2020-2-27"
+                },
+                {
+                    id:3,
+                    type: 4,
+                    name: "http发展历史",
+                    summary: "版本迭代",
+                    date: "2020-3-2"
                 }
             ]
         }
@@ -109,7 +116,13 @@ router.get('/node/api/v1/summary/nice', (ctx, next) => {
     }
 })
 
-
+let content3= `
+http协议的发展历史 
+HTTP/0.9：只有一个命令GET 没有header等描述数据的信息 服务器发送完毕就关闭TCP连接
+HTTP/1.0：增加了很多命令 增加了status code 和header
+HTTP/1.1：持久连接 pipeline 同一个连接发送多个请求增加host(可以跑多个web服务器)和其他命令
+HTTP/2：所有数据以二进制传输。同一个TCP连接里面发送多个请求不再需要按照顺序，头信息压缩以及推送(服务端主动发送信息)等提高效率的功能，TCP连接上的http请求可以并发
+`
 
 let content2 = `
 <h1>JS变量类型和计算</h1>
@@ -127,7 +140,7 @@ let content2 = `
 <h1>JS</h1>
 <p>JS的核心基础是ECMA 262标准规定的语法。JS Web API是W3C标准，用于网页操作API 前者和后者结合就是javascript能够在浏览器上跑的语言</p>
 <h1>DOM</h1>
-<p>浏览器解析html后生成的树结构的文档对象模型DOM 获取DOM等基本操作 attribute和property.property是DOM中的属性，是JavaScript里的对象；attribute是HTML标签上的特性，它的值只能够是字符串；</p>
+<p>浏览器解析html后生成的树结构的文档对象模型DOM 获取DOM等基本操作 attribute和property。property是DOM中的属性，是JavaScript里的对象；attribute是HTML标签上的特性，它的值只能够是字符串；</p>
 <p>DOM性能，DOM操作特别"昂贵" 1、对DOM查询做缓存 2、将频繁操作改为一次性操作(创建文档片段 document.createDocumentFragment)</p>
 <h1>BOM</h1>
 <p>BOM api  navigator(浏览器信息) screen(屏幕信息) location(路由信息) history(前进后退)</p>
@@ -135,6 +148,22 @@ let content2 = `
 <p>事件绑定 事件冒泡 事件捕获 组织默认行为(preventDefault()) 事件冒泡会向外触发事件 事件捕获从外到里触发事件 stopPropagation()组织事件冒泡。 </p>
 <p>事件代理: 自动绑定事件 原理就是事件冒泡，在父级容器中监听事件 再通过event.target拿到具体的绑定内容</p>
 <h1>ajax</h1>
+<p>Asynchronous Javascript And XML,异步的javascript和XML 核心API XMLHttpRequest</p>
+<p>ajax请求时，浏览器要求当前页面和server必须同源(协议、域名、端口必须一致) src和herf可以跨域。CORS服务器设置http header允许跨域请求</p>
+<h1>存储</h1>
+<p>cookie localStorage sessionStorage</p>
+<p>cookie用于浏览器和server通讯，h5之前借用cookie用作存储功能但cookie存储量不大4KB(document.cookie)</p>                   
+<p>localStorage sessionStorage每个域最大可存5m。localStorage.setItem,getItem localStorage(常用)数据会永久存储，除非代码或者手动删除。sessionStorage数据值存在于当前会话，浏览器关闭则情空</p>
+<h1>页面加载过程</h1>
+<p>资源形式有html、js、css 媒体文件：图片视频</p>
+<p>DNS解析：域名->IP地址 浏览器根据IP地址向浏览器发起http请求 服务器处理http请求，并返回浏览器</p>
+<p>根据HTML生成DOM tree 根据CSS生成CSSOM将DOMTree和CSSOM整合形成RenderTree，根据RenderTree渲染页面，遇到Script则暂停渲染，优先加载并执行JS代码完成后继续，直至将RenderTree渲染完成</p>
+<h1>性能优化</h1>
+<p>性能优化原则：多使用内存，缓存或其他方法，减少CPU计算量，减少网络加载耗时，(空间换时间) 加载更快(减少资源体积，压缩代码。减少访问次数，合并代码，SSR服务器渲染，缓存。使用CDN)、渲染更快(css放在head(css放在head标签中比css放在body标签尾部少了一次构建RenderTree,)，js放在body最下面，尽早执行JS、懒加载、对DOM查询进行缓存、合并频繁DOM操作，节流(每隔多少秒才执行一次)、防抖(输入框用户名密码))</p>
+<h1>安全</h1>
+<p>XSS</p>
+
+
 
 `
 let content1 = `
@@ -164,6 +193,15 @@ let content0 = `
 // 笔记详情
 router.get('/node/api/v1/summary/detail', (ctx, next) => {
     switch (ctx.query.id) {
+        case "3":
+            ctx.body={
+                "code":200,
+                "msg": "success",
+                "data":{
+                    "content":content3,
+                    "title":"http发展历史"
+                }
+            }
         case "2":
             ctx.body = {
                 "code": 200,
@@ -185,8 +223,7 @@ router.get('/node/api/v1/summary/detail', (ctx, next) => {
                 }
 
             }
-            break;
-
+            break;  
         default:
             ctx.body = {
                 "code": 200,
