@@ -117,11 +117,11 @@ router.get('/node/api/v1/summary/nice', (ctx, next) => {
 })
 
 let content3= `
-http协议的发展历史 
-HTTP/0.9：只有一个命令GET 没有header等描述数据的信息 服务器发送完毕就关闭TCP连接
-HTTP/1.0：增加了很多命令 增加了status code 和header
-HTTP/1.1：持久连接 pipeline 同一个连接发送多个请求增加host(可以跑多个web服务器)和其他命令
-HTTP/2：所有数据以二进制传输。同一个TCP连接里面发送多个请求不再需要按照顺序，头信息压缩以及推送(服务端主动发送信息)等提高效率的功能，TCP连接上的http请求可以并发
+<h1>http协议的发展历史</h1> 
+<p>HTTP/0.9：只有一个命令GET 没有header等描述数据的信息 服务器发送完毕就关闭TCP连接</p>
+<p>HTTP/1.0：增加了很多命令 增加了status code 和header</p>
+<p>HTTP/1.1：持久连接 pipeline 同一个连接发送多个请求增加host(可以跑多个web服务器)和其他命令</p>
+<p>HTTP/2：所有数据以二进制传输。同一个TCP连接里面发送多个请求不再需要按照顺序，头信息压缩以及推送(服务端主动发送信息)等提高效率的功能，TCP连接上的http请求可以并发</p>
 `
 
 let content2 = `
