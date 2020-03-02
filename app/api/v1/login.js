@@ -11,3 +11,5 @@ router.post('/node/api/v1/login', (ctx, next) => {
         }
     }
 })
+
+module.exports = router
