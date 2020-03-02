@@ -43,7 +43,7 @@ router.get('/node/api/v1/summary', (ctx, next) => {
                 {
                     id: 4,
                     name: "Css/other",
-                    number: 0,
+                    number: 1,
                     headerImg: "https://yangicheng.cn/static/image/blog-summary/css.png",
                     headerName: "Css",
                     headerSummary: "Cascading Style Sheets (CSS) is a language used most often to style and improve upon the appearance of views.",
@@ -202,6 +202,7 @@ router.get('/node/api/v1/summary/detail', (ctx, next) => {
                     "title":"http发展历史"
                 }
             }
+            break;
         case "2":
             ctx.body = {
                 "code": 200,
