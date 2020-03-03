@@ -4,12 +4,15 @@ const router = new Router()
 router.post('/node/api/v1/login', (ctx, next) => {
     const account = 'CIM'
     const password = '123456'
-    const data = ctx.request.body
+    let data = ctx.request.body
+    data = Object.keys(data)[0]
+    let array = Object.values(JSON.parse(data))
+
     let msg = 'success'
-    if(data.account != account){
+    if(array[0] != account){
         msg = '账号不存在'
     }
-    if(data.account == account && data.password != password){
+    if(array[0] == account && array[1] != password){
         msg = '密码不正确'
     }
     
