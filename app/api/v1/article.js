@@ -30,12 +30,31 @@ router.get('/node/api/v1/article', (ctx, next) => {
                     "articleLabel": ["理论", "面试"],
                     "articleDate": '2020-2-22'
 
+                },
+                {
+                    "id": 3,
+                    "articleTitle": "浏览器渲染过程",
+                    "articleImg": "https://yangicheng.cn/static/image/blog-summary/javascript.png",
+                    "articleLabel": ["原理","底层"],
+                    "articleDate": '2020-3-8'
+
                 }
             ]
         }
     }
 })
-
+let content3 = `
+<p>在浏览器中输入URL之后，经过DNS解析，建立TCP连接之后开始发送http请求，web服务器接收到请求之后将返回相应的html</p>
+<h1>浏览器拿到html后</h1>
+<p>拿到代码后，浏览器在内存条中开辟出一块栈内存，用来给代码执行提供环境；同时分配一个主线程去一行行解析和执行代码</p>
+<p>进栈执行，执行完出栈。js是单线程的，主线程就是一行一行解析代码。当浏览器遇到Link/script/img等异步操作后，都会开辟全新的线程去加载资源文件，所以浏览器是多线程的，新的线程所做的事情放在一个TASK QUEUE任务队列中</p>
+<h1>浏览器解析和执行完html后</h1>
+<p>主线程会去任务队列中查看任务是否完成，所完成一个取出一个执行，这就是事件循环</p>
+<p>这就是为什么css要放在body前面，因为要尽早的使全新的线程去加载css代码，加快网页的渲染速度</p>
+<img src="https://www.yangicheng.cn/static/image/article-detail/eventLoop.jpg" alt=""/>
+<h1>回流、重绘</h1>
+<p>回流根据生成的渲染树，计算他们在设备视口内的确切位置和大小， 重绘是根据渲染树以及回流得到的几何信息，得到节点的绝对像素再发送给GPU展示在页面上</p>
+`
 
 let content2 = `<h1>什么是https</h1><p>https是HTTP+SSL/TLS，也就是在原有的http协议的基础上加上了为了保证传输安全性的协议，所以https并不是一个新的协议</p><h1>为什么要使用https</h1><p>在以前的http协议中，大致存在着三个问题：1、数据明文传输 2、报文完整性无法验证 3、无法验证通信双方的身份</p><h1>对称加密算法</h1><p>对称加密算法是客户端和服务端共用一个密钥</p><p>优点：加密解密效率高、缺点：密钥无法实现安全传输、密钥数目难以管理、无法提供信息完整性校验</p>
 <h1>非对称加密算法</h1>
@@ -78,6 +97,17 @@ let content0 = `
 // 文章详情
 router.get('/node/api/v1/article/detail', (ctx, next) => {
     switch (ctx.query.id) {
+        case "3":
+            ctx.body = {
+                "code": 200,
+                "msg": 'success',
+                "data": {
+                    "content": content3,
+                    "title": "浏览器渲染过程"
+                }
+
+            }
+            break;
         case "2":
             ctx.body = {
                 "code": 200,
